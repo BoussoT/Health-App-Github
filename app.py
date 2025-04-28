@@ -1,89 +1,38 @@
-from flask import Flask, request, jsonify
-from health_utils import calculate_bmi, calculate_bmr
-
-app = Flask(__name__)
-
-@app.route('/bmi', methods=['POST'])
-def bmi():
-    data = request.get_json()
-    
-    # Validate input data
-    if not data or 'height' not in data or 'weight' not in data:
-        return jsonify({'error': 'Missing required parameters. Please provide height (m) and weight (kg)'}), 400
-    
-    try:
-        height = float(data['height'])
-        weight = float(data['weight'])
-        
-        if height <= 0 or weight <= 0:
-            return jsonify({'error': 'Height and weight must be positive values'}), 400
-        
-        bmi_value = calculate_bmi(height, weight)
-        
-        # Determine BMI category
-        category = "Unknown"
-        if bmi_value < 18.5:
-            category = "Underweight"
-        elif 18.5 <= bmi_value < 25:
-            category = "Normal weight"
-        elif 25 <= bmi_value < 30:
-            category = "Overweight"
-        else:
-            category = "Obese"
-            
-        result = {
-            'bmi': round(bmi_value, 2),
-            'category': category
-        }
-        
-        return jsonify(result)
-    
-    except ValueError:
-        return jsonify({'error': 'Invalid input. Height and weight must be numeric values'}), 400
-
-@app.route('/bmr', methods=['POST'])
-def bmr():
-    data = request.get_json()
-    
-    # Validate input data
-    required_fields = ['height', 'weight', 'age', 'gender']
-    if not data or not all(field in data for field in required_fields):
-        return jsonify({'error': f'Missing required parameters. Please provide {", ".join(required_fields)}'}), 400
-    
-    try:
-        height = float(data['height'])  # in cm
-        weight = float(data['weight'])  # in kg
-        age = int(data['age'])
-        gender = data['gender'].lower()
-        
-        if height <= 0 or weight <= 0 or age <= 0:
-            return jsonify({'error': 'Height, weight, and age must be positive values'}), 400
-        
-        if gender not in ['male', 'female']:
-            return jsonify({'error': 'Gender must be either "male" or "female"'}), 400
-        
-        bmr_value = calculate_bmr(height, weight, age, gender)
-        
-        result = {
-            'bmr': round(bmr_value, 2),
-            'unit': 'calories/day'
-        }
-        
-        return jsonify(result)
-    
-    except ValueError:
-        return jsonify({'error': 'Invalid input. Height, weight, and age must be numeric values'}), 400
-
 @app.route('/', methods=['GET'])
 def home():
-    return jsonify({
-        'service': 'Health Calculator API',
-        'endpoints': {
-            '/bmi': 'Calculate Body Mass Index (POST)',
-            '/bmr': 'Calculate Basal Metabolic Rate (POST)'
-        },
-        'version': '1.0.0'
-    })
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    html_content = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Health Calculator API</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+            h1 { color: #2c3e50; }
+            .endpoint { background-color: #f8f9fa; border-left: 4px solid #17a2b8; padding: 15px; margin-bottom: 20px; }
+            .method { color: #17a2b8; font-weight: bold; }
+            .parameters { color: #6c757d; }
+        </style>
+    </head>
+    <body>
+        <h1>Health Calculator API</h1>
+        <p>Version: 1.0.0</p>
+        
+        <div class="endpoint">
+            <h2>/bmi</h2>
+            <p><span class="method">Method: POST</span></p>
+            <p>Calculate Body Mass Index (BMI)</p>
+            <p class="parameters">Parameters: height (m), weight (kg)</p>
+            <p>Example request body: {"height": 1.75, "weight": 70}</p>
+        </div>
+        
+        <div class="endpoint">
+            <h2>/bmr</h2>
+            <p><span class="method">Method: POST</span></p>
+            <p>Calculate Basal Metabolic Rate (BMR) using Harris-Benedict Equation</p>
+            <p class="parameters">Parameters: height (cm), weight (kg), age, gender</p>
+            <p>Example request body: {"height": 175, "weight": 70, "age": 30, "gender": "male"}</p>
+        </div>
+    </body>
+    </html>
+    """
+    return html_content, 200, {'Content-Type': 'text/html'}
