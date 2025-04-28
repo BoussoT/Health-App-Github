@@ -38,7 +38,7 @@ health-calculator-service/
 ├── Dockerfile             # Dockerfile pour la containerisation
 ├── Makefile               # Makefile pour automatiser les commandes
 ├── requirements.txt       # Dépendances Python
-└── .github/workflows/ci-cd.yml  # Déploiement automatique via GitHub Actions
+└── .github/workflows/main_myhealthapp.yml # Déploiement automatique via GitHub Actions
 
 🚀 Déploiement automatique sur Azure
 Le projet utilise GitHub Actions pour réaliser un déploiement continu vers Azure App Service.
