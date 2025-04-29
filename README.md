@@ -69,21 +69,16 @@ Azure s’occupe du reste ! 🎉
 
 ---
 
-📋 API disponible
+## 📋 API disponible
 
-Endpoint	Méthode	Description	Paramètres attendus
-/bmi	POST	Calcul du BMI	{ "height": mètres, "weight": kilogrammes }
-/bmr	POST	Calcul du BMR	{ "height": centimètres, "weight": kilogrammes, "age": années, "gender": "male" ou "female" }
-
-Endpoint | Méthode | Description | Paramètres attendus
-/bmi | POST | Calcul du BMI | { "height": mètres, "weight": kilogrammes }
-/bmr | POST | Calcul du BMR | { "height": centimètres, "weight": kilogrammes, "age": années, "gender": "male" ou "female" }
-
+| Endpoint | Méthode | Description       | Paramètres attendus                                                                 |
+|----------|---------|-------------------|--------------------------------------------------------------------------------------|
+| `/bmi`   | POST    | Calcul du BMI     | `{ "height": mètres, "weight": kilogrammes }`                                       |
+| `/bmr`   | POST    | Calcul du BMR     | `{ "height": centimètres, "weight": kilogrammes, "age": années, "gender": "male" ou "female" }` |
 
 ---
 
 ## 🚀 DEMO
 
 Base URL :  
-https://myhealthapp-h7e6cwfsazdxg4ca.canadacentral-01.azurewebsites.net/
-
+[https://myhealthapp-h7e6cwfsazdxg4ca.canadacentral-01.azurewebsites.net](https://myhealthapp-h7e6cwfsazdxg4ca.canadacentral-01.azurewebsites.net)
