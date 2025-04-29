@@ -1,8 +1,7 @@
 # 🩺 Health Calculator Microservice with CI/CD on Azure
 
-## 🎯 Objectif
 
-Développer un **microservice Python/Flask** capable de :
+Ceci est un **microservice Python/Flask** capable de :
 - Calculer le **BMI** (Body Mass Index)
 - Calculer le **BMR** (Basal Metabolic Rate)
 
@@ -40,15 +39,33 @@ health-calculator-service/
 ├── requirements.txt       # Dépendances Python
 └── .github/workflows/main_myhealthapp.yml # Déploiement automatique via GitHub Actions
 
-🚀 Déploiement automatique sur Azure
-Le projet utilise GitHub Actions pour réaliser un déploiement continu vers Azure App Service.
+🔄 Déploiement GitHub–Azure (CI/CD)
 
-Prérequis
+Prérequis:
+
 Un compte Azure actif.
 
 Un App Service Azure (Linux / Python 3.9 ou 3.10).
 
 Le Publish Profile de l'App Service
+
+Ce projet est déployé automatiquement à chaque mise à jour de la branche main, grâce à :
+
+✅ L’intégration native de GitHub dans Azure App Service
+
+✅ Azure qui construit et déploie automatiquement l’image Docker directement depuis votre dépôt GitHub
+
+👉 Aucune configuration de secrets manuels ni fichier de workflow GitHub n’est nécessaire.
+
+📍 Le déploiement est configuré directement dans le portail Azure :
+
+Allez dans votre App Service > Centre de déploiement
+
+Choisissez GitHub comme source
+
+Sélectionnez votre dépôt et la branche à surveiller
+
+Azure s’occupe du reste ! 🎉
 
 📋 API disponible
 
@@ -59,3 +76,8 @@ Endpoint	Méthode	Description	Paramètres attendus
 Endpoint | Méthode | Description | Paramètres attendus
 /bmi | POST | Calcul du BMI | { "height": mètres, "weight": kilogrammes }
 /bmr | POST | Calcul du BMR | { "height": centimètres, "weight": kilogrammes, "age": années, "gender": "male" ou "female" }
+
+
+##  Demo  
+Base URL:  
+https://myhealthapp-h7e6cwfsazdxg4ca.canadacentral-01.azurewebsites.net/
