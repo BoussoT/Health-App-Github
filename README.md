@@ -67,6 +67,8 @@ Sélectionnez votre dépôt et la branche à surveiller
 
 Azure s’occupe du reste ! 🎉
 
+---
+
 📋 API disponible
 
 Endpoint	Méthode	Description	Paramètres attendus
@@ -77,7 +79,8 @@ Endpoint | Méthode | Description | Paramètres attendus
 /bmi | POST | Calcul du BMI | { "height": mètres, "weight": kilogrammes }
 /bmr | POST | Calcul du BMR | { "height": centimètres, "weight": kilogrammes, "age": années, "gender": "male" ou "female" }
 
+---
 
-## DEMO
+## **DEMO**
 Base URL:  
 https://myhealthapp-h7e6cwfsazdxg4ca.canadacentral-01.azurewebsites.net/
