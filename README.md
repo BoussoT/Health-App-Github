@@ -78,6 +78,6 @@ Endpoint | Méthode | Description | Paramètres attendus
 /bmr | POST | Calcul du BMR | { "height": centimètres, "weight": kilogrammes, "age": années, "gender": "male" ou "female" }
 
 
-## 🌐 Demo  
+## DEMO
 Base URL:  
 https://myhealthapp-h7e6cwfsazdxg4ca.canadacentral-01.azurewebsites.net/
